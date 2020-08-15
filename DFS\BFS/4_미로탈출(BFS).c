@@ -87,5 +87,5 @@ int main(void)
 			}
 		}
 	}
-	printf("%c", map[g_n - 1][g_m - 1]);
+	printf("%d", map[g_n - 1][g_m - 1] - '0');
 }
