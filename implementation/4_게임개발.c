@@ -4,7 +4,7 @@
 int main(void)
 {
 	int n, m, x, y, cp, turn = 0, cnt = 1;
-	int cardinalPoint[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+	int cardinalPoint[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 	int **map;
 	scanf("%d %d %d %d %d", &n, &m, &x, &y, &cp);
 
@@ -40,8 +40,7 @@ int main(void)
 		{
 			tx = x - cardinalPoint[cp][0];
 			ty = y - cardinalPoint[cp][1];
-			printf("%d %d %d\n", ty, tx, cp);
-			if (map[ty][tx] != 1)
+			if (map[tx][ty] != 1)
 			{
 				x = tx;
 				y = ty;
