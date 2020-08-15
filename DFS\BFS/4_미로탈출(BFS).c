@@ -30,10 +30,13 @@ void initQueue(int x, int y)
 	queue.cnt = 1;
 }
 
-char *fr_getline()
+int *fr_getline()
 {
-	char *buf = (char *)malloc(sizeof(char) * g_m);
-	scanf("%s", buf);
+	int *buf = (int *)malloc(sizeof(int) * g_m);
+	for (int i = 0; i < g_m; i++)
+	{
+		scanf("%1d", &buf[i]);
+	}
 	return buf;
 }
 
@@ -68,7 +71,7 @@ int main(void)
 {
 	scanf("%d %d", &g_n, &g_m);
 
-	char **map = (char **)malloc(sizeof(char *) * g_n);
+	int **map = (int **)malloc(sizeof(int *) * g_n);
 	for (int i = 0; i < g_n; i++)
 		map[i] = fr_getline();
 	initQueue(0, 0);
@@ -80,12 +83,17 @@ int main(void)
 		{
 			int nx = node->x - mv[i][0];
 			int ny = node->y - mv[i][1];
-			if (nx >= 0 && ny >= 0 && nx < g_n && ny < g_m && map[nx][ny] == '1')
+			if (nx >= 0 && ny >= 0 && nx < g_n && ny < g_m && map[nx][ny] == 1)
 			{
 				map[nx][ny] = map[node->x][node->y] + 1;
 				append(nx, ny);
 			}
 		}
+		free(node);
 	}
-	printf("%d", map[g_n - 1][g_m - 1] - '0');
+	printf("%d", map[g_n - 1][g_m - 1]);
+	for (int i = 0; i < g_n; i++)
+		free(map[i]);
+	free(map);
+	return 0;
 }
